@@ -242,6 +242,8 @@ Run `terraform fmt` to format the files
 
 Run `terraform plan` to eliminate errors
 
+### STORAGE AND DATABASE
+
 Run `terraform apply --auto-approve` to create rds
 
 [AWS Database Output](./images/aws-db.PNG)
@@ -253,3 +255,38 @@ Run `terraform apply --auto-approve` to create rds
 [AWS Launch Template Output](./images/aws-launchtemp.PNG)
 
 [AWS Launch Template Output](./images/aws-autoscaling.PNG)
+
+Useful Terraform Documentation, go through this documentation and understand the arguement needed for each resources:
+
+RDS
+EFS
+KMS
+Create Elastic File System (EFS)
+In order to create an EFS you need to create a KMS key.
+
+AWS Key Management Service (KMS) makes it easy for you to create and manage cryptographic keys and control their use across a wide range of AWS services and in your applications.
+
+- Add the following code to efs.tf
+
+- Let us create EFS and it mount targets- add the following code to efs.tf
+
+Create MySQL RDS
+Let us create the RDS itself using this snippet of code in rds.tf file:
+
+- Before Applying, if you take note, we gave reference to a lot of varibales in our resources that has not been declared in the variables.tf file. Go through the entire code and spot this variables and declare them in the variables.tf file.
+
+If you have done that well, you file should like this one below.
+
+At this point, you shall have pretty much all infrastructure elements ready to be deployed automatically, but before we paln and apply our code we need to take note of two things;
+
+we have a long list of files which may looks confusing but that is not bad for a start, we are going to fix this using the concepts of modules in Project 18
+Secondly, our application wont work becuase in out shell script that was passed into the launch some endpoints like the RDs and EFS point is needed in which they have not been created yet. So in project 19 we will use our Ansible knowledge to fix this.
+Try to plan and apply your Terraform codes, explore the resources in AWS console and make sure you destroy them right away to avoid massive costs.
+
+- Additional tasks.
+
+In addition to regular project submission include following:
+
+Summarise your understanding on Networking concepts like IP Address, Subnets, CIDR Notation, IP Routing, Internet Gateways, NAT
+Summarise your understanding of the OSI Model, TCP/IP suite and how they are connected – research beyond the provided articles, watch different YouTube videos to fully understand the concept around OSI and how it is related to the Internet and end-to-end Web Solutions. You don not need to memorise the layers – just understand the idea around it.
+Explain the difference between assume role policy and role policy.
